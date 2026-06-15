@@ -1,3 +1,3 @@
 # Agricultura Familiar e Economia Local
 
-Projeto desenvolvido para o concurso agrinho 2026
+Desenvolvido para o Concurso Agrinho 2026, o site "EcoLocal" aborda a profunda conexão entre a Agricultura Familiar e o fortalecimento da Economia Local no estado do Paraná. Desenvolvido com HTML5, CSS3 e JavaScript através do VSCode, o projeto utiliza uma identidade moderna em tons de roxo e lilás para apresentar dados de impacto socioeconômico, como a manutenção do homem no campo e a segurança alimentar. O grande diferencial interativo da plataforma é o "Guia de Consumo Sazonal": um sistema inteligente em JavaScript que mapeia e exibe os alimentos em época de safra no Paraná, incentivando o usuário a comprar diretamente dos pequenos produtores nos momentos ideais, gerando economia financeira e estimulando o comércio justo regional.
