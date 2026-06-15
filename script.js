@@ -1,56 +1,59 @@
-// Aguarda o HTML carregar completamente antes de executar o script
 document.addEventListener("DOMContentLoaded", function() {
     
-    // ==========================================
-    // 1. FUNCIONALIDADE DO BOTÃO "SAIBA MAIS"
-    // ==========================================
-    const btnConhecer = document.getElementById("btn-conhecer");
-    const secaoImportancia = document.getElementById("importancia");
+    // Extenso banco de dados focado em safras do estado do Paraná
+    const dadosSafra = {
+        janeiro: {
+            titulo: "☀️ Alimentos de Verão (Foco em Hidratação e Energia)",
+            descricao: "Com o pico do calor tropical, as frutas ricas em água e hortaliças de crescimento rápido ganham força máxima nas lavouras familiares locais.",
+            itens: ["🍉 Melancia Fresca", "🌽 Milho Verde Doce", "🍅 Tomate Caipira", " Pineapple Abacaxi Pérola", "🥬 Alface Hidropônica", "🥒 Pepino Japonês", "🍇 Uva Niágara (Famosa no PR)"]
+        },
+        maio: {
+            titulo: "🍁 Alimentos de Outono (Foco em Raízes e Vitaminas)",
+            descricao: "É o momento ideal de colheita de raízes profundas, tubérculos e citros que começam a amadurecer com a mudança sutil da temperatura.",
+            itens: ["🍠 Mandioca Mansa", "🥔 Batata-Doce Roxa", "🍊 Mexerica Ponkan", "🥕 Cenoura Orgânica", "🎃 Abóbora Cabotiá", "🍋 Limão Taiti", "🥑 Abacate Margarida"]
+        },
+        agosto: {
+            titulo: "❄️ Alimentos de Inverno (Resistência e Folhas Escuras)",
+            descricao: "As geadas e o frio do Paraná beneficiam o cultivo de plantas de folhas firmes e hortaliças que concentram mais açúcares naturais e nutrientes nesta época.",
+            itens: [" Broccoli Brócolis Ramoso", "🥬 Couve Manteiga", "🍓 Morango Doce", "🥔 Batata Inglesa", "🥬 Espinafre Verdadeiro", "🥕 Nabo", "🧅 Alho-Poró"]
+        },
+        outubro: {
+            titulo: "🌸 Alimentos de Primavera (Variedade e Cores Vivas)",
+            descricao: "O período de floração traz colheitas multicoloridas, leguminosas e vegetais que equilibram o paladar na transição climática.",
+            itens: ["🥭 Manga Ubá", "🟢 Ervilha Torto", "🌱 Vagem Macarrão", "🥬 Repolho Roxo", "🍠 Cará / Inhame", "🍌 Banana Prata", "🍅 Tomate Cereja"]
+        }
+    };
 
-    if (btnConhecer && secaoImportancia) {
-        btnConhecer.addEventListener("click", function() {
-            // Faz a tela deslizar suavemente até a seção desejada
-            secaoImportancia.scrollIntoView({ behavior: "smooth" });
-        });
-    }
+    const btnBuscar = document.getElementById("btn-buscar");
+    const selecaoMes = document.getElementById("selecao-mes");
+    const painelSafra = document.getElementById("painel-safra");
 
-    // ==========================================
-    // 2. CALCULADORA DE IMPACTO LOCAL
-    // ==========================================
-    const btnCalcular = document.getElementById("btn-calcular");
-    const inputValor = document.getElementById("valor-gasto");
-    const divResultado = document.getElementById("resultado-simulacao");
+    if (btnBuscar && selecaoMes && painelSafra) {
+        btnBuscar.addEventListener("click", function() {
+            const mesSelecionado = selecaoMes.value;
+            const dados = dadosSafra[mesSelecionado];
 
-    if (btnCalcular && inputValor && divResultado) {
-        btnCalcular.addEventListener("click", function() {
-            // Pega o valor digitado e transforma em número
-            const valorGasto = parseFloat(inputValor.value);
+            // Monta as tags dinâmicas para cada produto
+            let produtosHTML = "";
+            dados.itens.forEach(function(produto) {
+                produtosHTML += `<span class="item-produto">${produto}</span>`;
+            });
 
-            // Validação: verifica se o usuário digitou um número válido e maior que zero
-            if (isNaN(valorGasto) || valorGasto <= 0) {
-                divResultado.style.color = "#ff4d4d"; // Cor vermelha para erro
-                divResultado.innerHTML = "Por favor, digite um valor válido maior que zero. 🌾";
-                return;
-            }
-
-            // Lógica do cálculo (Simulação de economia social):
-            // Numa economia justa, cerca de 80% do valor fica direto com o produtor (sem atravessadores)
-            const valorRetidoLocalmente = (valorGasto * 0.8).toFixed(2);
-            
-            // Estimativa de famílias beneficiadas indiretamente ao longo do ano
-            const familiasApoiadas = Math.ceil(valorGasto * 0.1); 
-
-            // Muda a cor do texto de volta para o roxo do projeto
-            divResultado.style.color = "#4a2874";
-
-            // Exibe o resultado na tela usando Template Literals
-            divResultado.innerHTML = `
-                <hr style="border: 0; height: 1px; background: #c2a5f9; margin: 15px 0;">
-                <p>✨ <strong>Resultado da sua simulação:</strong></p>
-                <p>• Desses R$ ${valorGasto.toFixed(2)}, cerca de <strong>R$ ${valorRetidoLocalmente}</strong> vão direto para as mãos dos pequenos produtores da sua região.</p>
-                <p>• Esse consumo consciente ajuda a fortalecer aproximadamente <strong>${familiasApoiadas}</strong> família(s) de agricultores locais.</p>
-                <p><em>Obrigado por apoiar o desenvolvimento social e sustentável do Paraná!</em> 🚜💚</p>
+            // Constrói e injeta o layout final
+            painelSafra.innerHTML = `
+                <h3>${dados.titulo}</h3>
+                <p style="margin: 10px 0 20px 0; color: #4a3e56; font-size: 15px;">${dados.descricao}</p>
+                <h4 style="color: var(--roxo-escuro); font-size: 16px;">O que comprar direto das famílias produtoras agora:</h4>
+                <div class="lista-produtos">
+                    ${produtosHTML}
+                </div>
             `;
+            
+            // Ativa a exibição do painel
+            painelSafra.style.display = "block";
+            
+            // Faz a tela rolar suavemente até o resultado gerado
+            painelSafra.scrollIntoView({ behavior: "smooth", block: "nearest" });
         });
     }
 });
