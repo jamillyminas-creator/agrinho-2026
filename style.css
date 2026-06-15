@@ -1,0 +1,325 @@
+/* ==========================================================================
+   CONFIGURAÇÕES GERAIS E CORES (Tons de Roxo, Lilás e Lavanda)
+   ========================================================================== */
+:root {
+    --purple-dark: #2d124d;    /* Roxo profundo para títulos e cabeçalho */
+    --purple-main: #6236ff;    /* Roxo vibrante para destaques e botões */
+    --purple-light: #9d7cff;   /* Lilás para transições e detalhes */
+    --bg-lavender: #f5f0ff;    /* Fundo lavanda ultra leve e confortável */
+    --card-bg: #ffffff;        /* Fundo dos blocos brancos */
+    --text-dark: #2b2535;      /* Texto escuro com toque roxo para leitura */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+html {
+    scroll-behavior: smooth; /* Rolagem suave nativa */
+}
+
+body {
+    background-color: var(--bg-lavender);
+    color: var(--text-dark);
+    line-height: 1.7;
+}
+
+/* ==========================================================================
+   CABEÇALHO GOURMET (HEADER)
+   ========================================================================== */
+header {
+    background: rgba(45, 18, 77, 0.95); /* Roxo profundo com leve transparência */
+    backdrop-filter: blur(10px); /* Efeito de vidro fosco atrás do menu */
+    color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 8%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+header .logo h1 {
+    font-size: 24px;
+    font-weight: 800;
+    background: linear-gradient(45deg, #fff, var(--purple-light));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+header nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+header nav ul li a {
+    color: #e2d5f3;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 8px;
+}
+
+header nav ul li a:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* ==========================================================================
+   BANNER DE IMPACTO (HERO SECTION)
+   ========================================================================== */
+.hero-section {
+    background: linear-gradient(135deg, #1d0836 0%, #4c1c8c 50%, #6236ff 100%);
+    color: #ffffff;
+    text-align: center;
+    padding: 140px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Detalhe sutil de fundo geométrico */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(157,124,255,0.1) 0%, transparent 60%);
+}
+
+.hero-section h2 {
+    font-size: 46px;
+    font-weight: 800;
+    margin-bottom: 25px;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.hero-section p {
+    font-size: 19px;
+    max-width: 750px;
+    margin: 0 auto 35px auto;
+    opacity: 0.85;
+}
+
+.hero-section button {
+    background: #ffffff;
+    color: var(--purple-dark);
+    border: none;
+    padding: 15px 40px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.hero-section button:hover {
+    background: var(--purple-light);
+    color: white;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(157, 124, 255, 0.4);
+}
+
+/* ==========================================================================
+   SEÇÕES DE CONTEÚDO
+   ========================================================================== */
+section {
+    padding: 80px 12%;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+section h2 {
+    color: var(--purple-dark);
+    font-size: 32px;
+    font-weight: 800;
+    margin-bottom: 35px;
+    position: relative;
+    display: inline-block;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 50px;
+    height: 5px;
+    background: linear-gradient(90deg, var(--purple-main), var(--purple-light));
+    border-radius: 10px;
+}
+
+/* Caixa de Citação Destacada */
+blockquote {
+    background: linear-gradient(90deg, #f0e6ff, #f9f6ff);
+    border-left: 6px solid var(--purple-main);
+    padding: 25px;
+    margin: 30px 0;
+    font-style: italic;
+    font-size: 18px;
+    color: var(--purple-dark);
+    border-radius: 0 16px 16px 0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+}
+
+/* Listas customizadas com Emojis/Símbolos */
+ul li {
+    margin-bottom: 18px;
+    position: relative;
+    padding-left: 30px;
+    font-size: 16px;
+}
+
+ul li::before {
+    content: "🌱"; /* Emoji combina perfeitamente com a proposta do Agrinho */
+    position: absolute;
+    left: 0;
+    top: 2px;
+    font-size: 16px;
+}
+
+/* ==========================================================================
+   GRID DE CARDS (ECONOMIA SOCIAL)
+   ========================================================================== */
+.cards-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.card {
+    background-color: var(--card-bg);
+    padding: 35px;
+    border-radius: 18px;
+    box-shadow: 0 10px 30px rgba(98, 54, 255, 0.05);
+    border: 1px solid rgba(157, 124, 255, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--purple-main), var(--purple-light));
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(98, 54, 255, 0.15);
+    border-color: rgba(157, 124, 255, 0.3);
+}
+
+.card h3 {
+    color: var(--purple-dark);
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   ÁREA DO SIMULADOR (INTERATIVO)
+   ========================================================================== */
+#interativo {
+    background: #ffffff;
+    border-radius: 24px;
+    padding: 50px;
+    box-shadow: 0 15px 40px rgba(45, 18, 77, 0.08);
+    margin: 50px auto;
+    border: 1px solid rgba(157, 124, 255, 0.15);
+}
+
+.form-simulador {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+}
+
+.form-simulador label {
+    font-size: 16px;
+    font-weight: 600;
+    width: 100%;
+    color: var(--purple-dark);
+}
+
+.form-simulador input {
+    padding: 15px 20px;
+    flex: 1;
+    min-width: 200px;
+    border: 2px solid #e1d7f5;
+    border-radius: 12px;
+    font-size: 16px;
+    background-color: var(--bg-lavender);
+    color: var(--purple-dark);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.form-simulador input:focus {
+    border-color: var(--purple-main);
+    background-color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(98, 54, 255, 0.15);
+}
+
+.form-simulador button {
+    background: linear-gradient(135deg, var(--purple-main), #4c1c8c);
+    color: white;
+    border: none;
+    padding: 15px 35px;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(98, 54, 255, 0.3);
+}
+
+.form-simulador button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(98, 54, 255, 0.45);
+    filter: brightness(1.1);
+}
+
+#resultado-simulacao {
+    margin-top: 25px;
+    padding: 20px;
+    border-radius: 12px;
+    background-color: var(--bg-lavender);
+    border-left: 4px solid var(--purple-main);
+    transition: all 0.3s ease;
+}
+
+/* ==========================================================================
+   RODAPÉ (FOOTER)
+   ========================================================================== */
+footer {
+    background-color: var(--purple-dark);
+    color: #e2d5f3;
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 15px;
+    font-weight: 500;
+    border-top: 4px solid var(--purple-main);
+}
+
+footer p {
+    opacity: 0.8;
+}
